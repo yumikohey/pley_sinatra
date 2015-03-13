@@ -1,0 +1,33 @@
+<h2>Reviews from Pley</h2>
+
+<% site_reviews.each do |comment| %>
+	<div class="row">
+			<% user_id = comment.user_id %>
+			<% user = User.find(user_id) %>
+			<b><%= user.screen_name %></b>: 
+	</div>
+
+	<div class="row">
+		<%= comment.content %>
+	</div>
+
+<% end %>
+
+<h2>Reviews from Yelp</h2>
+	<div class="col-md-12">
+
+	<% result.reviews.each do |review| %>
+
+	<div class="row">
+		<div class="row">
+			<img src="<%=review.rating_image_url%>">
+		</div>
+		<div class="row">	
+			<span class="comment_except"><%= review.excerpt %></span>
+		</div>
+			
+	</div>
+
+	<% end %>
+	</div>
+

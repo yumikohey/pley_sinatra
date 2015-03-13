@@ -1,0 +1,17 @@
+<% @restaurants.businesses.each do |biz| %>
+   <% joints = Business.where("name LIKE ?", "%#{biz.name}%").limit(10) %> 
+   <% joints.each do |joint_one| %>
+   	  <div class="row">
+		<div class="col-md-2">
+			<%= erb :view_360, :locals => { :biz => joint_one } %>
+		</div>
+
+		<div class="col-md-7 col-md-offset-2">
+			   <h2><a href="/<%= joint_one.business_id%>"><%= joint_one.name.titleize %></a></h2>
+			   <img src="<%=biz.rating_img_url%>">
+			   <%= erb :biz_vio_desc, :locals => { :biz_id => joint_one.business_id } %>
+		</div>
+
+	  </div>
+   <% end %>
+<% end %>

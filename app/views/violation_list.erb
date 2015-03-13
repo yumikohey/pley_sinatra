@@ -1,21 +1,14 @@
-			<% @lowscore_biz.each do |business| %>
-			  <% biz_id = business.business_id %>
-			  <% biz = Business.where(business_id: biz_id)[0] %>
-				<div class="row">
-					<div class="col-md-2">
-						<img class="street_view_img img-rounded" style="-webkit-user-select: none; cursor: zoom-in;" src="https://maps.googleapis.com/maps/api/streetview?size=300x300&location=<%=biz.latitude%>,<%=biz.longitude%>&fov=550&heading=90&pitch=10"/>
-					</div>
+<% @lowscore_biz.each do |business| %>
+  <% biz_id = business.business_id %>
+  <% biz = Business.where(business_id: biz_id)[0] %>
+	<div class="row">
+		<div class="col-md-2">
+			<%= erb :view_360, :locals => { :biz => biz } %>
+		</div>
 
-					<div class="col-md-7 col-md-offset-2">
-					   <h2><%= biz.name.titleize %></h2>
-				        <% biz_vios = Violation.where(business_id: biz_id) %>
-						<% biz_vios.each do |violation| %>
-						<div class="row">
-							<span class="text-danger"><%= violation.risk_category %></span>
-							<span class="text-primary"><%= violation.description %></span>	
-						    <span>Date: <%= violation.date %></span>
-					    </div>
-					<%end%>
-					</div>
-				</div>
-			<% end %>
+		<div class="col-md-7 col-md-offset-2">
+		   <h2><a href="/<%= biz.business_id%>"><%= biz.name.titleize %></a></h2>
+		   <%= erb :biz_vio_desc, :locals => { :biz_id => biz_id } %>
+		</div>
+	</div>
+<% end %>

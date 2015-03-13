@@ -2,11 +2,18 @@
 # See: http://gembundler.com/bundler_setup.html
 #      http://stackoverflow.com/questions/7243486/why-do-you-need-require-bundler-setup
 ENV['BUNDLE_GEMFILE'] ||= File.expand_path('../../Gemfile', __FILE__)
+ENV['CONSUMER_KEY'] = "wGEgF6SN0OuoDyzv7WE2og"
+ENV['CONSUMER_SECRET'] = "SxeEJ0HjyC-N6Y9QENyUTyw5WRE"
+ENV['TOKEN'] = "zp-wJQ5M7-VCbVnL09IFnI0am2myQDN0"
+ENV['TOKEN_SECRET'] = "l06vjOjl3HtkN8i7Max4YYPuMNU"
+# ENV['GOOGLE_KEY'] = "AIzaSyBeRCw4xuS5zbC1L4zEWqF8BWrIKHbphHs"
 
 require 'bundler/setup' if File.exists?(ENV['BUNDLE_GEMFILE'])
 
 # Require gems we care about
 require 'rubygems'
+
+require 'yelp'
 
 require 'uri'
 require 'pathname'
@@ -43,3 +50,11 @@ Dir[APP_ROOT.join('app', 'helpers', '*.rb')].each { |file| require file }
 
 # Set up the database and models
 require APP_ROOT.join('config', 'database')
+
+# Yelp.client.configure do |config|
+#   config.consumer_key = "wGEgF6SN0OuoDyzv7WE2og"
+#   config.consumer_secret = "SxeEJ0HjyC-N6Y9QENyUTyw5WRE"
+#   config.token = 'zp-wJQ5M7-VCbVnL09IFnI0am2myQDN0'
+#   config.token_secret = 'l06vjOjl3HtkN8i7Max4YYPuMNU'
+# end
+

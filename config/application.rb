@@ -1,6 +1,8 @@
 require 'pathname'
 require 'active_record'
 require 'logger'
+require 'yelp'
+
 require_relative '../lib/inspections_importer'
 require_relative '../lib/businesses_importer'
 require_relative '../lib/violations_importer'

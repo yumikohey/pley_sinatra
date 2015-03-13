@@ -13,13 +13,20 @@
   <link rel="stylesheet" href="/css/application.css">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <script src="//maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
+  
   <script src="/js/application.js"></script>
 
   <title>Pley</title>
 </head>
 <body>
   <div class="container">
-    <%= yield %>
+    <%= erb :"user/login" %>
+    <div class="container-fluid">
+      <%= yield %>
+    </div>
+    
   </div>
 </body>
 </html>

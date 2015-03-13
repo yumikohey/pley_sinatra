@@ -17,6 +17,11 @@ gem 'rake'
 gem 'iconv'
 gem 'shotgun'
 
+gem 'bcrypt'
+gem 'yelp'
+
+gem 'pry-debugger'
+
 group :test do
   gem 'shoulda-matchers'
   gem 'rack-test'
