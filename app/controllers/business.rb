@@ -25,7 +25,6 @@ get '/:business_id' do
 
 	concate_business_name = @biz.name.split(' ').join('-')
 	business_yelp_id = concate_business_name + '-san-francisco'
-    # @result = @client.search_by_coordinates(coordinates, params)
 	@result = @client.business(business_yelp_id)
 
 	@comments = Comment.where(business_id: params[:business_id])
@@ -33,10 +32,19 @@ get '/:business_id' do
 end
 
 post '/:business_id' do
-	Comment.create!(
+	comment = Comment.create!(
 		content: params[:content],
 		business_id: params[:business_id],
 		user_id: User.find(session[:user_id]).id
 		)
-	redirect "/#{params[:business_id]}"
+	user = User.find(session[:user_id]).screen_name
+	# require 'pry-debugger'
+	# binding.pry
+
+	if request.xhr?
+	   content_type :json
+	   {screen_name: user, content: comment.content}.to_json
+	else
+	   redirect "/#{params[:business_id]}"
+	end
 end

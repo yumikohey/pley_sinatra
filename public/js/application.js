@@ -37,23 +37,29 @@ $(document).ready(function() {
 		
 	};
 
-	$('#search_bar').on('click', '#get_my_current_location', getMyCurrentLocation());
+	$('#search_bar').on('click', '#get_my_current_location', getMyCurrentLocation);
+		var commentSubmit = function(){
+		var $target = $(event.target),
+	  		formData = $('#comment_form').serialize();
 
-	
-	// var formData = 
-	// {"coordinate":[
-	//     {
-	//     	"latitude": current_lat.val(), 
-	//         "longitude": current_long.val()
-	//     }
-	// ]}
+		$.ajax({
+		    url: $target.attr('action'),
+		    type: 'POST',
+		    dataType: 'JSON',
+		    data: formData
+		  }).done(function(response){
+		  	console.log('success');
+		    var new_comment = $('.comments_section .col-md-6');
+		    new_comment.append('<div class="container-fluid"><div class="row"><b>' +
+		    response.screen_name + '</b><div class="row">' + response.content + '</div></div>');
+		  })
+		  .fail(function(response){
+		  	console.log('fail');
+		  });
+	};
 
-	// $.ajax({
-	// 	url: '/',
-	// 	type: 'GET',
-	// 	dataType: 'JSON',
-	// 	data: formData
-	// }).done(function(response){
-	// 	console.log(success);
-	// });
+	$('#comment_form').on('click', '#submit_comment', function(event){
+	    event.preventDefault();
+	    commentSubmit($(this));
+	 });
 });
