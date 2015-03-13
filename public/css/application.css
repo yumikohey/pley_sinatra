@@ -2,12 +2,20 @@
 * {
 	font-size: 1em;
 }
+
+.block {
+	margin-top: 100px;
+}
 a:hover{
 	text-decoration: none;
 }
 
 .clear{
 	clear: both;
+}
+
+.orange-text{
+	color: orange;
 }
 
 /* Index Page */
@@ -22,6 +30,14 @@ a:hover{
 .street_view_img {
 	margin-top: 70px;
 	box-shadow: 5px 5px 5px #bbb;
+}
+
+.description-text{
+	font-size: 1.5em;
+}
+
+.sml-txt {
+	font-size: 0.8em;
 }
 
 /* myCarousel */
@@ -48,6 +64,15 @@ a:hover{
 }
 
 /* business comment area */
+
+.comments_section {
+	margin-bottom: 200px;
+	font-size: 1.5em;
+}
+
+.comment_edge{
+	margin-left: 20px;
+}
 
 #comment_form input, #comment_form textarea {
 	border: 4px solid rgba(0,0,0,0.1);

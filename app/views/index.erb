@@ -10,10 +10,12 @@
 
 	<div class="row lowest_score_container">
 	    <div class="col-md-12">
-	    <% if session[:search_value].downcase != 'low' %>
-			<%= erb :search_result %>
+	    <% if session[:search_value] != 'low' %>
+			<%= erb :search_result, 
+			:locals => { :restaurant => @restaurants }%>
 		<% elsif session[:search_value].downcase == 'low' %>
-			<%= erb :violation_list %>
+			<%= erb :violation_list, 
+			:locals => { :restaurant => @restaurants } %>
 		<% end %>
 		</div>
 	</div>

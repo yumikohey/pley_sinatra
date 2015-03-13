@@ -8,8 +8,19 @@
 
 		<div class="col-md-7 col-md-offset-2">
 			   <h2><a href="/<%= joint_one.business_id%>"><%= joint_one.name.titleize %></a></h2>
-			   <img src="<%=biz.rating_img_url%>">
-			   <%= erb :biz_vio_desc, :locals => { :biz_id => joint_one.business_id } %>
+			    <div class="container-fluid">
+				   <div class="row">
+				   	  <span class="description-text orange-text"><%= restaurant.businesses[0].location.address[0] %></span>
+				   </div>
+				   <div class="row">
+				   	  <span><img src="<%=restaurant.businesses[0].rating_img_url%>"/></span>
+				   	  <span> Reviews: <%=restaurant.businesses[0].review_count%></span>
+				   </div>		   	
+			   </div>
+			   <div class="container-fluid">
+			   	  <%= erb :biz_vio_desc, :locals => { :biz_id => joint_one.business_id } %>
+			   </div>
+			   
 		</div>
 
 	  </div>

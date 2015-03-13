@@ -1,8 +1,10 @@
 <% biz_vios = Violation.where(business_id: biz_id) %>
 <% biz_vios.each do |violation| %>
-	<div class="row">
+	<div class="row description-text">
+		<span class="text-info sml-txt pull-left">Date: <%= violation.date %></span>
+		<br>
 		<span class="text-danger"><%= violation.risk_category %></span>
-		<span class="text-primary"><%= violation.description %></span>	
-	    <span>Date: <%= violation.date %></span>
+		<span class="text-default"><%= violation.description %></span>	
+		<br>
     </div>
 <%end%>

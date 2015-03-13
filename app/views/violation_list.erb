@@ -7,8 +7,25 @@
 		</div>
 
 		<div class="col-md-7 col-md-offset-2">
+
 		   <h2><a href="/<%= biz.business_id%>"><%= biz.name.titleize %></a></h2>
-		   <%= erb :biz_vio_desc, :locals => { :biz_id => biz_id } %>
+		   <div class="container-fluid">
+			   <div class="row">
+			   	  <span class="description-text orange-text"><%= restaurant.businesses[0].location.address[0] %></span>
+			   </div>
+			   <div class="row">
+			   	  <span><img src="<%=restaurant.businesses[0].rating_img_url%>"/></span>
+			   	  <span> Reviews: <%=restaurant.businesses[0].review_count%></span>
+			   </div>		   	
+		   </div>
+
+		   
+		   <div class="container-fluid">
+		   		<br>
+		   		<%= erb :biz_vio_desc, :locals => { :biz_id => biz_id,
+		   			   :biz_from_yelp => biz
+		   			} %>
+		   </div>
 		</div>
 	</div>
 <% end %>
