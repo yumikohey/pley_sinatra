@@ -48,3 +48,18 @@ post '/:business_id' do
 	   redirect "/#{params[:business_id]}"
 	end
 end
+
+get '/business/nearby_restaurants' do
+	@client = Yelp::Client.new({ 
+				   consumer_key: ENV['CONSUMER_KEY'],
+                   consumer_secret: ENV['CONSUMER_SECRET'],
+                   token: ENV['TOKEN'],
+      	           token_secret: ENV['TOKEN_SECRET']
+              })
+	bounding_box = { sw_latitude: session[:lat].to_f - 0.05, sw_longitude: session[:longitude].to_f - 0.05, ne_latitude: session[:lat].to_f + 0.05, ne_longitude: session[:longitude].to_f + 0.05 }
+	features = { term: 'Chinese',
+	             limit: 15
+	         }
+	@restaurants = @client.search_by_bounding_box(bounding_box, features)
+	erb :"/business/nearby"
+end

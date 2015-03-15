@@ -5,6 +5,18 @@
 			<div class="row">
 	   			<span><img src="<%= @result.rating_img_url_large%>"/></span><span class="description-text"> <%= @result.review_count %> reviews</span>
 	   		</div>
+
+	   		<div class="row" style="margin-top:25px;">
+	   			<span class="description-text orange-text"><%= @result.location.display_address[0] %>
+	   				<br>
+	   			</span>
+	   			<span class="sml-text text-default"><%= @result.location.display_address[1] %>
+	   				<br>
+	   			</span>
+	   			<span class="sml-text text-default"><%= @result.location.display_address[2] %>
+	   				<br>
+	   			</span>
+	   		</div>
 		</div>	
 		<div class="row">
 			<div class="col-md-4">

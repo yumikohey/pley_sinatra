@@ -12,9 +12,15 @@ end
 
 post '/' do
 	session[:lat] = params[:latitude]
+	session[:longitude] = params[:longitude]
 	session[:search_value] = params[:search_info]
-	redirect "/"
+	if request.xhr?
+		{lat: session[:lat], longitude: session[:longitude]}.to_json
+	else
+	   redirect "/"
+	end
 end
+
 
 # coordinates = { latitude: 37.7577, longitude: -122.4376 }
 # client.search_by_coordinates(coordinates, params, locale)

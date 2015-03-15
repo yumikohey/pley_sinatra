@@ -1,24 +1,3 @@
-// var getMyCurrentLocation = function() {
-
-// 	if(!!navigator.geolocation) {
-	
-// 		navigator.geolocation.getCurrentPosition(function(position) {
-		
-//     		var geolocate = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-    		
-//     		var current_lat = document.getElementsByClass('get_location_lat');
-//     		var current_long = document.getElementsByClass('get_location_long');
-//     		current_lat.innerHTML(position.coords.latitude);
-//     	    current_long.innerHTML(position.coords.longitude);    		
-    		
-// 		});
-		
-// 	} else {
-// 		document.getElementsByClass('google_canvas').innerHTML = 'No Geolocation Support.';
-// 	}
-	
-// };
-
 $(document).ready(function() {
 	var current_lat = $('#get_location_lat');
 	var current_long = $('#get_location_long');
@@ -31,10 +10,21 @@ $(document).ready(function() {
 	    		var geolocate = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 	    		
 	    		current_lat.text(position.coords.latitude);
-	    	    current_long.text(position.coords.longitude);  		
-			});	
+	    	    current_long.text(position.coords.longitude);
+
+	    	    $.ajax({
+	    	    	url: '/',
+	    	    	type: 'POST',
+	    	    	dataType: 'JSON',
+	    	    	data: {latitude: current_lat.text(), longitude: current_long.text()}
+	    	    }).done(function(response){
+	    	    	console.log('success');
+	    	    })
+	    	    .fail(function(response){
+	    	    	console.log('fail');
+	    	    }); 
+	    	});
 		}
-		
 	};
 
 	$('#search_bar').on('click', '#get_my_current_location', getMyCurrentLocation);
